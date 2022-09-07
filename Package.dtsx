@@ -1,0 +1,1970 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2022 2:12:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFJ-SF-V007"
+  DTS:CreatorName="JFJ\zmadmin"
+  DTS:DTSID="{77C95220-54C5-4EF5-8962-465C32F417E9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{5F501C9B-7E4E-493F-8C48-E8012AB1CDF4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Input Recognition File]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{DCFC3175-0642-4582-9C88-EE5D67FDE74D}"
+      DTS:ObjectName="Excel Input Recognition File">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=E:\GivingDNAExport\GivingDNA Recognition.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Input Revenue File]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{F1393264-3DFE-4A8B-B2EF-B2AECE49F081}"
+      DTS:ObjectName="Excel Input Revenue File">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=E:\GivingDNAExport\GivingDNA Revenue.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Output Recognition]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{27382B68-9CA8-4B61-AFFA-DA599D371CFE}"
+      DTS:ObjectName="Excel Output Recognition">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=E:\GivingDNA Required Files\Recognition Template.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Output Revenue]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{9A46E683-65E7-4496-8A21-3AA4F1004BE5}"
+      DTS:ObjectName="Excel Output Revenue">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=E:\GivingDNA Required Files\Revenue Template.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Recognition Template Original.xlsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{974F46A6-5ACE-4321-AC5B-3D1483504130}"
+      DTS:ObjectName="Recognition Template Original.xlsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\GivingDNA Required Files\Recognition Template Original.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Recognition Template.xlsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{4A40EFBC-FA05-4201-9C67-D6D4407BFCA3}"
+      DTS:ObjectName="Recognition Template.xlsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\GivingDNA Required Files\Recognition Template.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Revenue Template Original.xlsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{97164AA0-766B-4F22-9043-E254FF71EE53}"
+      DTS:ObjectName="Revenue Template Original.xlsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\GivingDNA Required Files\Revenue Template Original.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Revenue Template.xlsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{600AB206-D1F4-4446-8602-7EC99B7A69A2}"
+      DTS:ObjectName="Revenue Template.xlsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="E:\GivingDNA Required Files\Revenue Template.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34D8F49E-626E-4736-9045-A034723E610D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;E:\\GivingDNAExport\\Recognition&quot; +  Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;yy&quot;,getdate()),2) + Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;m&quot;,getdate()),2) + Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;d&quot;,getdate()),2)  + &quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RecognitionFilename">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\GivingDNAExport\Recognition220907.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{01F64854-5DB5-415A-BBB4-537C1FC8C96F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;E:\\GivingDNAExport\\Revenue&quot; + Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;yy&quot;,getdate()),2) + Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;m&quot;,getdate()),2) + Right(&quot;0&quot; + (DT_STR,4,1252) DatePart(&quot;d&quot;,getdate()),2)  + &quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RevenueFilename">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\GivingDNAExport\Revenue220907.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{CE746078-9B4E-4FE2-A922-8168D748EC75}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Copy Recognition to Variable Filename"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{DA431515-05F0-4691-A160-F95F18AFD84D}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy Recognition to Variable Filename"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{4A40EFBC-FA05-4201-9C67-D6D4407BFCA3}"
+              TaskDestinationPath="User::RecognitionFilename"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Copy Revenue to Variable Filename"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{F984BD16-2819-4E7E-BF38-4AD51D1844E7}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy Revenue to Variable Filename"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{600AB206-D1F4-4446-8602-7EC99B7A69A2}"
+              TaskDestinationPath="User::RevenueFilename"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Restore Recognition Template"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{3A84BE58-9F88-42E3-81E5-E00441698B45}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Restore Recognition Template"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{974F46A6-5ACE-4321-AC5B-3D1483504130}"
+              TaskDestinationPath="{4A40EFBC-FA05-4201-9C67-D6D4407BFCA3}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Restore Revenue Template"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{BDA3B29B-7680-42F4-80C0-3AF375F9D91B}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Restore Revenue Template"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{97164AA0-766B-4F22-9043-E254FF71EE53}"
+              TaskDestinationPath="{600AB206-D1F4-4446-8602-7EC99B7A69A2}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{FD3BEC7D-1A54-46E7-9536-DFF8BC7F22B0}"
+          DTS:From="Package\Sequence Container\Copy Revenue to Variable Filename"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Copy Recognition to Variable Filename"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3946EF0B-8263-427D-97DC-A270DA1421ED}"
+          DTS:From="Package\Sequence Container\Copy Recognition to Variable Filename"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Restore Revenue Template"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{26874BE2-4817-4365-B233-1F99A0FB2DE2}"
+          DTS:From="Package\Sequence Container\Restore Revenue Template"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container\Restore Recognition Template"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3DFE1C08-BA7B-4F8A-96ED-196E7FC5690A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\Data Flow Task - Recognition"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{9A909D68-FE68-464D-94EF-E2835DFAE7BF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task - Recognition"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input].Columns[Lookup ID]"
+                          cachedDataType="r8"
+                          cachedName="Lookup ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Lookup ID]</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input].Columns[Gift Amount]"
+                          cachedDataType="cy"
+                          cachedName="Gift Amount"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Gift Amount]</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="3"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]"
+                          name="Recognition Credit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[RTRIM]("Yes")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RTRIM("Yes")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination"
+                  componentClassID="Microsoft.ExcelDestination"
+                  contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Excel Destination"
+                  name="Excel Destination"
+                  usesDispositions="true">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Output Recognition]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Output Recognition]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Excel Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          cachedDataType="r8"
+                          cachedName="BUSINESSPROCESSOUTPUT_PKID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Lookup ID]"
+                          cachedDataType="r8"
+                          cachedName="Lookup ID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Lookup ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[First Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="First Name"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[First Name]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[First Name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Last Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Last Name"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Last Name]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Last Name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Transaction ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Transaction ID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Transaction ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Gift Date]"
+                          cachedDataType="date"
+                          cachedName="Gift Date"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Date]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Gift Amount]"
+                          cachedDataType="cy"
+                          cachedName="Gift Amount"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Amount]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Channel]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Channel"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Channel]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Channel]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Designation]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Designation"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Designation]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Designation]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Category]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Category"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Category]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Category]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].Columns[Recognition Credit]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="Recognition Credit"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Recognition Credit]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Lookup ID]"
+                          dataType="r8"
+                          name="Lookup ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Transaction ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Date]"
+                          dataType="date"
+                          name="Gift Date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Amount]"
+                          dataType="cy"
+                          name="Gift Amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          name="Channel" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          name="Designation" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          name="Category" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Recognition Credit]"
+                          dataType="wstr"
+                          length="255"
+                          name="Recognition Credit" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Outputs[Excel Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Excel Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Input Recognition File]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Input Recognition File]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          name="BUSINESSPROCESSOUTPUT_PKID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lookup ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          name="Lookup ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[First Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[First Name]"
+                          name="First Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Last Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Last Name]"
+                          name="Last Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction ID]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]"
+                          name="Transaction ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Date]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]"
+                          name="Gift Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Amount]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          name="Gift Amount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Channel]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Channel]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Channel]"
+                          name="Channel"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Designation]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Designation]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Designation]"
+                          name="Designation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                          name="Category"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lookup ID]"
+                          dataType="r8"
+                          name="Lookup ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Transaction ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Date]"
+                          dataType="date"
+                          name="Gift Date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Amount]"
+                          dataType="cy"
+                          name="Gift Amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          name="Channel" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          name="Designation" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          name="Category" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Lookup ID]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Lookup ID]"
+                          name="Lookup ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[First Name]"
+                          name="First Name" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Last Name]"
+                          name="Last Name" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction ID]"
+                          name="Transaction ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Date]"
+                          dataType="date"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Date]"
+                          name="Gift Date" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Amount]"
+                          dataType="cy"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Amount]"
+                          name="Gift Amount" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Channel]"
+                          name="Channel" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Designation]"
+                          name="Designation" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                          name="Category" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Recognition.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination.Inputs[Excel Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Recognition.Paths[Excel Source Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\Data Flow Task - Revenue"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{AC472A3F-3C78-45D7-892E-DFA11C2AD614}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task - Revenue"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input].Columns[Lookup ID]"
+                          cachedDataType="r8"
+                          cachedName="Lookup ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Lookup ID]</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input].Columns[Gift Amount]"
+                          cachedDataType="cy"
+                          cachedName="Gift Amount"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Gift Amount]</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]"
+                          name="Recognition Credit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[RTRIM]("No")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RTRIM("No")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination"
+                  componentClassID="Microsoft.ExcelDestination"
+                  contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Excel Destination"
+                  name="Excel Destination"
+                  usesDispositions="true">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Output Revenue]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Output Revenue]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Excel Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          cachedDataType="r8"
+                          cachedName="BUSINESSPROCESSOUTPUT_PKID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Lookup ID]"
+                          cachedDataType="r8"
+                          cachedName="Lookup ID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Lookup ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[First Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="First Name"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[First Name]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[First Name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Last Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Last Name"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Last Name]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Last Name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Transaction ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Transaction ID"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Transaction ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Gift Date]"
+                          cachedDataType="date"
+                          cachedName="Gift Date"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Date]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Gift Amount]"
+                          cachedDataType="cy"
+                          cachedName="Gift Amount"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Amount]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Channel]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Channel"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Channel]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Channel]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Designation]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Designation"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Designation]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Designation]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Category]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Category"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Category]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Category]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].Columns[Recognition Credit]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Recognition Credit"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Recognition Credit]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Output].Columns[Recognition Credit]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Lookup ID]"
+                          dataType="r8"
+                          name="Lookup ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Transaction ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Date]"
+                          dataType="date"
+                          name="Gift Date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Gift Amount]"
+                          dataType="cy"
+                          name="Gift Amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          name="Channel" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          name="Designation" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          name="Category" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Recognition Credit]"
+                          dataType="wstr"
+                          length="255"
+                          name="Recognition Credit" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Outputs[Excel Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Excel Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Input Revenue File]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Input Revenue File]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          name="BUSINESSPROCESSOUTPUT_PKID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lookup ID]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Lookup ID]"
+                          name="Lookup ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[First Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[First Name]"
+                          name="First Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Last Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Last Name]"
+                          name="Last Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction ID]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Transaction ID]"
+                          name="Transaction ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Date]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Date]"
+                          name="Gift Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Amount]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Gift Amount]"
+                          name="Gift Amount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Channel]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Channel]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Channel]"
+                          name="Channel"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Designation]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Designation]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Designation]"
+                          name="Designation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                          name="Category"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Lookup ID]"
+                          dataType="r8"
+                          name="Lookup ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Transaction ID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Date]"
+                          dataType="date"
+                          name="Gift Date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gift Amount]"
+                          dataType="cy"
+                          name="Gift Amount" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          name="Channel" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          name="Designation" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          name="Category" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[BUSINESSPROCESSOUTPUT_PKID]"
+                          name="BUSINESSPROCESSOUTPUT_PKID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Lookup ID]"
+                          dataType="r8"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Lookup ID]"
+                          name="Lookup ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[First Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[First Name]"
+                          name="First Name" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Last Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Last Name]"
+                          name="Last Name" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Transaction ID]"
+                          name="Transaction ID" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Date]"
+                          dataType="date"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Date]"
+                          name="Gift Date" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Amount]"
+                          dataType="cy"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Gift Amount]"
+                          name="Gift Amount" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Channel]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Channel]"
+                          name="Channel" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Designation]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Designation]"
+                          name="Designation" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                          name="Category" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Revenue.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination.Inputs[Excel Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Revenue.Paths[Excel Source Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5A18B60E-1E1B-4B2D-A162-4F35419E2153}"
+          DTS:From="Package\Sequence Container 1\Data Flow Task - Recognition"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container 1\Data Flow Task - Revenue" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D732CF19-7B13-492A-AD98-9540D8415F82}"
+      DTS:From="Package\Sequence Container 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="350.666666666667,42.6666666666667"
+          Id="Package\Sequence Container\Copy Recognition to Variable Filename"
+          TopLeft="41.8333268761636,68.4259250781235" />
+        <NodeLayout
+          Size="350.666666666667,42.6666666666667"
+          Id="Package\Sequence Container\Copy Revenue to Variable Filename"
+          TopLeft="41.8333268761636,7.88888794901197" />
+        <NodeLayout
+          Size="350,42.6666666666667"
+          Id="Package\Sequence Container\Restore Recognition Template"
+          TopLeft="41.8333268761636,189.499999336346" />
+        <NodeLayout
+          Size="350.666666666667,42.6666666666667"
+          Id="Package\Sequence Container\Restore Revenue Template"
+          TopLeft="41.8333268761636,128.962962207235" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="41.8333268761636,29.2222212823453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.5370371291115"
+              Start="0,0"
+              End="-7.5,60.5370371291115">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,56.5370371291115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,56.5370371291115"
+                    Point2="-22.5,60.5370371291115"
+                    Point3="-18.5,60.5370371291115" />
+                  <mssgle:LineSegment
+                    End="-7.5,60.5370371291115" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-47.804453125,-17.609375,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="41.8333268761636,95.5370361892346">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.7592593513337"
+              Start="0,0"
+              End="-7.5,54.7592593513337">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,50.7592593513337" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,50.7592593513337"
+                    Point2="-22.5,54.7592593513337"
+                    Point3="-18.5,54.7592593513337" />
+                  <mssgle:LineSegment
+                    End="-7.5,54.7592593513337" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-47.804453125,-17.609375,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="392.49999354283,150.296295540568">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.666666666666686,60.537037129111"
+              Start="0,0"
+              End="6.83333333333331,60.537037129111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,56.537037129111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,56.537037129111"
+                    Point2="22.5,60.537037129111"
+                    Point3="18.5,60.537037129111" />
+                  <mssgle:LineSegment
+                    End="6.83333333333331,60.537037129111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.804453125,-17.609375,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="420,286.666666666667"
+          Size="420,330"
+          Id="Package\Sequence Container"
+          TopLeft="120.466988941022,263.888887877264" />
+        <NodeLayout
+          Size="284.666666666667,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition"
+          TopLeft="7.02414091271913,12.3611110770315" />
+        <NodeLayout
+          Size="254.666666666667,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue"
+          TopLeft="18.1110982354049,94.9166657465196" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
+          TopLeft="147.400952907395,54.3611110770315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.5555546694881"
+              Start="0,0"
+              End="0,33.0555546694881">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.0555546694881" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="306,166.666666666667"
+          Size="306,209.333333333334"
+          Id="Package\Sequence Container 1"
+          TopLeft="121.689212068351,16.996260176666" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="274.689212068351,226.329593509999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.777776872671,37.5592943672646"
+              Start="0,0"
+              End="55.777776872671,30.0592943672646">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7796471836323" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7796471836323"
+                    Point2="0,18.7796471836323"
+                    Point3="4,18.7796471836323" />
+                  <mssgle:LineSegment
+                    End="51.777776872671,18.7796471836323" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51.777776872671,18.7796471836323"
+                    Point2="55.777776872671,18.7796471836323"
+                    Point3="55.777776872671,22.7796471836323" />
+                  <mssgle:LineSegment
+                    End="55.777776872671,30.0592943672646" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.5844353113355,23.7796471836323,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Recognition">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source"
+          TopLeft="202.333333333333,82.666666666667" />
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination"
+          TopLeft="202.333333333333,275.666666666667" />
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition\Derived Column"
+          TopLeft="202.333333333333,176.666666666667" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition.Paths[Derived Column Output]"
+          TopLeft="282,218.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Data Flow Task - Recognition.Paths[Excel Source Output]"
+          TopLeft="282,124.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Recognition\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Revenue">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source"
+          TopLeft="134.20834083048,64.3333333333337" />
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination"
+          TopLeft="134.20834083048,263.333333333333" />
+        <NodeLayout
+          Size="159.333333333334,42"
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue\Derived Column"
+          TopLeft="134.20834083048,163.333333333334" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue.Paths[Derived Column Output]"
+          TopLeft="213.875007497146,205.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.9999999999999"
+              Start="0,0"
+              End="0,50.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1\Data Flow Task - Revenue.Paths[Excel Source Output]"
+          TopLeft="213.875007497146,106.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.9999999999999"
+              Start="0,0"
+              End="0,49.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container 1\Data Flow Task - Revenue\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
